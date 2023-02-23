@@ -1,0 +1,27 @@
+# https://github.com/marketplace/actions/github-pr-auto-tagger
+# This is a simple github action that is triggered on github PR merging 
+# that will increment the git tag on the merge commit following semver 
+# and add a comment to the merged commit with the new tag.
+#
+# Usage
+# Simply include either #major, #minor, or #patch to the commit message. 
+# Alternatively, if you don't include of these, a patch level bump will be assumed.
+# Sample : Merge commit message (#major/#minor/#patch)
+
+name: auto_tagger
+on:
+  push:
+    branches:
+      - development
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 0
+    - name: Bump version and push tag
+      uses: RueLaLa/auto-tagger@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PR_NUMBER: ${{ github.event.number }}
