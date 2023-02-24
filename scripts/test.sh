@@ -5,6 +5,8 @@ t=$(git describe --tags `git rev-list --tags --max-count=1`)
 
 echo "Latest tag - $t"
 
+f=$(pwd)
+echo "$f"
 
 # get current commit hash for tag
 commit=$(git rev-parse HEAD)
@@ -23,9 +25,9 @@ echo $log
 # get commit logs and determine home to bump the version
 # supports #major, #minor, #patch (anything else will be 'patch')
 case "$log" in
-    *#major* ) new=$(semver bump major $t);;
-    *#minor* ) new=$(semver bump minor $t);;
-    * ) new=$(semver bump patch $t);;
+    *#major* ) new=$(./semver bump major $t);;
+    *#minor* ) new=$(./semver bump minor $t);;
+    * ) new=$(./semver bump patch $t);;
 esac
 
 # get repo name from git
