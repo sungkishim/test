@@ -17,11 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      with:
-        fetch-depth: 0
-    - name: Bump version and push tag
-      uses: RueLaLa/auto-tagger@master
+      - name: Call a Bash Script
+        run:  bash ${GITHUB_WORKSPACE}/scripts/test.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PR_NUMBER: ${{ github.event.number }}
