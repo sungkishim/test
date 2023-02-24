@@ -1,4 +1,3 @@
-# https://github.com/marketplace/actions/github-pr-auto-tagger
 # This is a simple github action that is triggered on github PR merging 
 # that will increment the git tag on the merge commit following semver 
 # and add a comment to the merged commit with the new tag.
