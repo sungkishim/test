@@ -17,6 +17,8 @@ jobs:
     name: Example
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Call a Bash Script
         run:  bash ${GITHUB_WORKSPACE}/scripts/test.sh
       env:
