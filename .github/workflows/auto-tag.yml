@@ -14,7 +14,8 @@ on:
     branches:
       - development
 jobs:
-  build:
+  runscript:
+    name: Example
     runs-on: ubuntu-latest
     steps:
       - name: Call a Bash Script
