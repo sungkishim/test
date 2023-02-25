@@ -2,11 +2,7 @@ echo "this is test.sh"
 
 # get latest tag
 t=$(git describe --tags `git rev-list --tags --max-count=1`)
-
-echo "Latest tag - $t"
-
-f=$(pwd)
-echo "pwd : $f"
+echo "Latest tag : $t"
 
 # get current commit hash for tag
 commit=$(git rev-parse HEAD)
@@ -20,8 +16,6 @@ else
     log=$(git log $t..HEAD --pretty=oneline)
 fi
 
-echo "log : $log"
-
 # get commit logs and determine home to bump the version
 # supports #major, #minor, #patch (anything else will be 'patch')
 case "$log" in
@@ -30,7 +24,7 @@ case "$log" in
     * ) new=$(./scripts/semver bump patch $t);;
 esac
 
-echo "new : $new"
+echo "New tag : $new"
 
 # get repo name from git
 remote=$(git config --get remote.origin.url)
@@ -38,6 +32,7 @@ repo=$(basename $remote .git)
 
 echo "remote : $remote"
 echo "repo : $repo"
+echo "token : $GITHUB_TOKEN"
 
 # POST a new ref to repo via Github API
 curl -s -X POST https://api.github.com/repos/sungkishim/$repo/git/refs \
