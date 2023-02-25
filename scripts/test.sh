@@ -32,7 +32,6 @@ repo=$(basename $remote .git)
 
 echo "remote : $remote"
 echo "repo : $repo"
-echo "token : $GITHUB_TOKEN"
 
 # POST a new ref to repo via Github API
 curl -s -X POST https://api.github.com/repos/sungkishim/$repo/git/refs \
