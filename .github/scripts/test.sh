@@ -5,7 +5,7 @@ t=$(git describe --tags `git rev-list --tags --max-count=1`)
 echo "Latest tag : $t"
 
 f=$(pwd)
-echo "pwd : f"
+echo "pwd : $f"
 
 # get current commit hash for tag
 commit=$(git rev-parse HEAD)
